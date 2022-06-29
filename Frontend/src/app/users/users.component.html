@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" routerLink="/users"> Users Management </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/welcome">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"  on-click="logout()">Log out</a>
+            </li>
+            
+        </ul>
+    </div>
+</nav>
+
+
+
+<div *ngIf="userHello">
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <div class="card" style="width: 30rem">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Verified</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let user of usersList; let k = index">
+                                
+                                <th scope="row">{{k+1}}</th>
+                                <td>{{user.email}}</td>
+                                <td>{{user.verified}}</td>
+                                <td *ngIf="user.verified== 'No'"><button on-click="verify(user.id)">Verify</button></td>
+                                <td *ngIf="user.verified== 'No'"><button on-click="decline(user.id)">Decline</button></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
